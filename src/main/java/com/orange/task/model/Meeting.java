@@ -2,15 +2,18 @@ package com.orange.task.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalTime;
 import java.util.Objects;
 
 public class Meeting {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
+    @NotNull(message = "The 'start' should not be null")
     private final LocalTime start;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
+    @NotNull(message = "The 'end' should not be null")
     private final LocalTime end;
 
     public Meeting(LocalTime start, LocalTime end) {
