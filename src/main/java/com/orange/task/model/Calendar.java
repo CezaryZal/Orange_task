@@ -1,14 +1,20 @@
 package com.orange.task.model;
 
-import java.util.List;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
+import java.util.Set;
 
 public class Calendar {
 
-    private Meeting workingHours;
-    private List<Meeting> plannedMeeting;
+    @NotNull(message = "The 'workingHours' should not be null")
+    private final Meeting workingHours;
 
-    public Calendar(Meeting workingHours, List<Meeting> plannedMeeting) {
+    @NotNull(message = "The 'plannedMeeting' should not be null")
+    @NotEmpty(message = "The 'plannedMeeting' must not be empty" )
+    private final Set<Meeting> plannedMeeting;
+
+    public Calendar(Meeting workingHours, Set<Meeting> plannedMeeting) {
         this.workingHours = workingHours;
         this.plannedMeeting = plannedMeeting;
     }
@@ -17,7 +23,7 @@ public class Calendar {
         return workingHours;
     }
 
-    public List<Meeting> getPlannedMeeting() {
+    public Set<Meeting> getPlannedMeeting() {
         return plannedMeeting;
     }
 
@@ -26,8 +32,8 @@ public class Calendar {
         if (this == o) return true;
         if (!(o instanceof Calendar)) return false;
         Calendar calendar = (Calendar) o;
-        return getWorkingHours().equals(calendar.getWorkingHours()) &&
-                getPlannedMeeting().equals(calendar.getPlannedMeeting());
+        return Objects.equals(getWorkingHours(), calendar.getWorkingHours()) &&
+                Objects.equals(getPlannedMeeting(), calendar.getPlannedMeeting());
     }
 
     @Override
