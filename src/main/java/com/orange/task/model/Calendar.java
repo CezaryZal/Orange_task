@@ -1,5 +1,7 @@
 package com.orange.task.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
@@ -8,10 +10,12 @@ import java.util.Set;
 public class Calendar {
 
     @NotNull(message = "The 'workingHours' should not be null")
+    @JsonProperty("working_hours")
     private final Meeting workingHours;
 
     @NotNull(message = "The 'plannedMeeting' should not be null")
     @NotEmpty(message = "The 'plannedMeeting' must not be empty" )
+    @JsonProperty("planned_meeting")
     private final Set<Meeting> plannedMeeting;
 
     public Calendar(Meeting workingHours, Set<Meeting> plannedMeeting) {

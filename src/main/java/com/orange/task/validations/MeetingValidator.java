@@ -2,7 +2,6 @@ package com.orange.task.validations;
 
 import com.orange.task.exceptions.invalid.InvalidMeetingException;
 import com.orange.task.model.Meeting;
-import org.springframework.stereotype.Service;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -10,7 +9,6 @@ import javax.validation.Validator;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@Service
 public class MeetingValidator {
 
     private static final Validator VALIDATOR = Validation.buildDefaultValidatorFactory().getValidator();
