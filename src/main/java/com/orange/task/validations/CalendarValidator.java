@@ -28,10 +28,10 @@ public class CalendarValidator {
     public static void validatePlannedMeetingWithRespectToStartTimeOfWorkingHours(final Calendar calendar){
         LocalTime firstStartTimeFromPlannedMeeting = calendar.getPlannedMeeting().stream()
                 .map(Meeting::getStart)
-                .max(LocalTime::compareTo)
+                .min(LocalTime::compareTo)
                 .orElseThrow(() -> new InvalidCalendarListException("The planned meeting is empty"));
 
-        if (!firstStartTimeFromPlannedMeeting.isBefore(calendar.getWorkingHours().getStart())){
+        if (!firstStartTimeFromPlannedMeeting.isAfter(calendar.getWorkingHours().getStart())){
             throw new InvalidCalendarListException("The meetings are before start time working hour");
         }
     }
@@ -39,10 +39,10 @@ public class CalendarValidator {
     public static void validatePlannedMeetingWithRespectToEndTimeOfWorkingHours(final Calendar calendar){
         LocalTime lastEndTimeFromPlannedMeeting = calendar.getPlannedMeeting().stream()
                 .map(Meeting::getEnd)
-                .min(LocalTime::compareTo)
+                .max(LocalTime::compareTo)
                 .orElseThrow(() -> new InvalidCalendarListException("The planned meeting is empty"));
 
-        if (!lastEndTimeFromPlannedMeeting.isAfter(calendar.getWorkingHours().getEnd())){
+        if (!lastEndTimeFromPlannedMeeting.isBefore(calendar.getWorkingHours().getEnd())){
             throw new InvalidCalendarListException("The meetings are after end time working hour");
         }
     }
