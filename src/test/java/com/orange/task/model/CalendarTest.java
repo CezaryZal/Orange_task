@@ -70,7 +70,7 @@ class CalendarTest {
         Set<ConstraintViolation<Calendar>> constraintViolations =
                 validator.validateValue(Calendar.class, "plannedMeeting", null);
 
-        assertThat(1).isEqualTo(constraintViolations.size());
+        assertThat(2).isEqualTo(constraintViolations.size());
         assertThat("The 'plannedMeeting' should not be null")
                 .isEqualTo(constraintViolations.iterator().next().getMessage());
     }
