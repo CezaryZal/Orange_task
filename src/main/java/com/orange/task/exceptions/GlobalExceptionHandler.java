@@ -1,6 +1,7 @@
 package com.orange.task.exceptions;
 
 import com.orange.task.exceptions.invalid.InvalidCalendarListException;
+import com.orange.task.exceptions.invalid.InvalidMeetingException;
 import com.orange.task.exceptions.response.ApiError;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpHeaders;
@@ -42,7 +43,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return handleExceptionInternal(ex, apiError, headers, apiError.getStatus(), request);
     }
 
-    @ExceptionHandler({InvalidCalendarListException.class})
+    @ExceptionHandler({InvalidCalendarListException.class, InvalidMeetingException.class})
     protected ResponseEntity<Object> handleValidationMaximumNumberAndNonOverlappingIdExceptions(
             Exception ex, WebRequest request) {
 
