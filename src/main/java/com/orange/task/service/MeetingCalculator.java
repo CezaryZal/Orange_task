@@ -23,11 +23,14 @@ public class MeetingCalculator {
         this.workingTimeTogetherGenerator = workingTimeTogetherGenerator;
     }
 
-    public Set<Meeting> calculateAvailableMeeting(Set<Calendar> calendarList, LocalTime inputDuration) {
-        firstWorkingTimeTogether = workingTimeTogetherGenerator.generateFirstWorkingTimeTogether(calendarList);
-        lastWorkingTimeTogether = workingTimeTogetherGenerator.generateLastWorkingTimeTogether(calendarList);
-
+    public Set<Meeting> calculateAvailableMeeting(Set<Calendar> calendarSet, LocalTime inputDuration) {
+        generateWorkingTimeTogetherByCalendarSet(calendarSet);
 
         return new HashSet<>(Arrays.asList(new Meeting(firstWorkingTimeTogether, lastWorkingTimeTogether)));
+    }
+
+    private void generateWorkingTimeTogetherByCalendarSet(Set<Calendar> calendarSet){
+        firstWorkingTimeTogether = workingTimeTogetherGenerator.generateFirstWorkingTimeTogether(calendarSet);
+        lastWorkingTimeTogether = workingTimeTogetherGenerator.generateLastWorkingTimeTogether(calendarSet);
     }
 }
