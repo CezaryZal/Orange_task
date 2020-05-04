@@ -31,17 +31,6 @@ class MeetingServiceTest {
     @BeforeEach
     void setUp() {
         meetingService = new MeetingService(meetingCalculator);
-//        sampleCollectionOfCalendar = Sets.newHashSet(
-//                new Calendar(new Meeting(LocalTime.of(9, 30), LocalTime.of(16, 0)),
-//                        Sets.newHashSet(new Meeting(LocalTime.of(9, 30), LocalTime.of(10, 0)),
-//                                new Meeting(LocalTime.of(11, 30), LocalTime.of(13, 30)),
-//                                new Meeting(LocalTime.of(15, 30), LocalTime.of(16, 0)))),
-//                new Calendar(new Meeting(LocalTime.of(8, 0), LocalTime.of(18, 0)),
-//                        Sets.newHashSet(new Meeting(LocalTime.of(9, 0), LocalTime.of(11, 0)),
-//                                new Meeting(LocalTime.of(12, 30), LocalTime.of(13, 0)),
-//                                new Meeting(LocalTime.of(14, 30), LocalTime.of(16, 0)),
-//                                new Meeting(LocalTime.of(16, 0), LocalTime.of(17, 30)))
-//                ));
     }
 
     @Test
@@ -54,9 +43,8 @@ class MeetingServiceTest {
                                 new Meeting(null, LocalTime.of(15, 30)))
                 ));
 
-        Exception exception = assertThrows(InvalidMeetingException.class, () -> {
-            meetingService.getMeetingSuggestions(sampleCollectionOfCalendar, "10:11");
-        });
+        Exception exception = assertThrows(InvalidMeetingException.class,
+                () -> meetingService.getMeetingSuggestions(sampleCollectionOfCalendar, "10:11"));
         String actualMessage = exception.getMessage();
 
         assertTrue(actualMessage.contains(expectedMessage));
@@ -72,9 +60,8 @@ class MeetingServiceTest {
                                 new Meeting(LocalTime.of(15, 30), null))
                 ));
 
-        Exception exception = assertThrows(InvalidMeetingException.class, () -> {
-            meetingService.getMeetingSuggestions(sampleCollectionOfCalendar, "10:11");
-        });
+        Exception exception = assertThrows(InvalidMeetingException.class,
+                () -> meetingService.getMeetingSuggestions(sampleCollectionOfCalendar, "10:11"));
         String actualMessage = exception.getMessage();
 
         assertTrue(actualMessage.contains(expectedMessage));
@@ -90,9 +77,8 @@ class MeetingServiceTest {
                                 new Meeting(LocalTime.of(15, 30), LocalTime.of(11, 30)))
                 ));
 
-        Exception exception = assertThrows(InvalidMeetingException.class, () -> {
-            meetingService.getMeetingSuggestions(sampleCollectionOfCalendar, "10:11");
-        });
+        Exception exception = assertThrows(InvalidMeetingException.class,
+                () -> meetingService.getMeetingSuggestions(sampleCollectionOfCalendar, "10:11"));
         String actualMessage = exception.getMessage();
 
         assertTrue(actualMessage.contains(expectedMessage));
@@ -108,9 +94,8 @@ class MeetingServiceTest {
                                 new Meeting(LocalTime.of(14, 30), LocalTime.of(15, 30)))
                 ));
 
-        Exception exception = assertThrows(InvalidMeetingException.class, () -> {
-            meetingService.getMeetingSuggestions(sampleCollectionOfCalendar, "10:11");
-        });
+        Exception exception = assertThrows(InvalidMeetingException.class,
+                () -> meetingService.getMeetingSuggestions(sampleCollectionOfCalendar, "10:11"));
         String actualMessage = exception.getMessage();
 
         assertTrue(actualMessage.contains(expectedMessage));
@@ -126,9 +111,8 @@ class MeetingServiceTest {
                                 new Meeting(LocalTime.of(15, 30), LocalTime.of(16, 30)))
                 ));
 
-        Exception exception = assertThrows(InvalidMeetingException.class, () -> {
-            meetingService.getMeetingSuggestions(sampleCollectionOfCalendar, "10:11");
-        });
+        Exception exception = assertThrows(InvalidMeetingException.class,
+                () -> meetingService.getMeetingSuggestions(sampleCollectionOfCalendar, "10:11"));
         String actualMessage = exception.getMessage();
 
         assertTrue(actualMessage.contains(expectedMessage));
@@ -142,9 +126,8 @@ class MeetingServiceTest {
                         Sets.newHashSet(new Meeting(LocalTime.of(9, 30), LocalTime.of(10, 0)))
                 ));
 
-        Exception exception = assertThrows(InvalidMeetingException.class, () -> {
-            meetingService.getMeetingSuggestions(sampleCollectionOfCalendar, "10:11");
-        });
+        Exception exception = assertThrows(InvalidMeetingException.class,
+                () -> meetingService.getMeetingSuggestions(sampleCollectionOfCalendar, "10:11"));
         String actualMessage = exception.getMessage();
 
         assertTrue(actualMessage.contains(expectedMessage));

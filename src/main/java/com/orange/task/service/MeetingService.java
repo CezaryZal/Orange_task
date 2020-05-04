@@ -2,6 +2,7 @@ package com.orange.task.service;
 
 import com.orange.task.model.Calendar;
 import com.orange.task.model.Meeting;
+import com.orange.task.validations.CalendarValidator;
 import com.orange.task.validations.MeetingValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,14 +25,15 @@ public class MeetingService {
     }
 
     public Set<Meeting> getMeetingSuggestions(Set<Calendar> calendarSet, String inputDuration){
-        validateMeetingInInputCalendarSet(calendarSet);
+        validateMeetingByInputCalendarSet(calendarSet);
+        validateCalendarByInputCalendarSet(calendarSet);
         
         return meetingCalculator.calculateAvailableMeeting(
                 calendarSet,
                 LocalTime.parse(inputDuration, dateTimeFormatter));
     }
 
-    private void validateMeetingInInputCalendarSet(Set<Calendar> calendarSet){
+    private void validateMeetingByInputCalendarSet(Set<Calendar> calendarSet){
         calendarSet.stream()
                 .map(Calendar::getPlannedMeeting)
                 .flatMap(Collection::stream)
@@ -45,6 +47,14 @@ public class MeetingService {
                 .forEach(inputMeeting -> {
                     MeetingValidator.validateMeetingFromValidationConstraints(inputMeeting);
                     MeetingValidator.validateStartAndEndTimes(inputMeeting);
+                });
+    }
+
+    private void validateCalendarByInputCalendarSet(Set<Calendar> calendarSet){
+        calendarSet.forEach(inputMeeting -> {
+                    CalendarValidator.validateCalendarFromValidationConstraints(inputMeeting);
+                    CalendarValidator.validatePlannedMeetingWithRespectToStartTimeOfWorkingHours(inputMeeting);
+                    CalendarValidator.validatePlannedMeetingWithRespectToEndTimeOfWorkingHours(inputMeeting);
                 });
     }
 }
