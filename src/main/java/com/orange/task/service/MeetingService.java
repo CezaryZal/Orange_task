@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.Set;
 
@@ -14,18 +15,20 @@ import java.util.Set;
 public class MeetingService {
 
     private final MeetingCalculator meetingCalculator;
+    private final DateTimeFormatter dateTimeFormatter;
 
     @Autowired
     public MeetingService(MeetingCalculator meetingCalculator) {
         this.meetingCalculator = meetingCalculator;
+        dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm");
     }
 
-    public Set<Meeting> getMeetingSuggestions(Set<Calendar> calendarSet, LocalTime inputDuration){
+    public Set<Meeting> getMeetingSuggestions(Set<Calendar> calendarSet, String inputDuration){
         validateMeetingInInputCalendarSet(calendarSet);
         
         return meetingCalculator.calculateAvailableMeeting(
                 calendarSet,
-                inputDuration);
+                LocalTime.parse(inputDuration, dateTimeFormatter));
     }
 
     private void validateMeetingInInputCalendarSet(Set<Calendar> calendarSet){

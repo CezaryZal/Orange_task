@@ -55,7 +55,7 @@ class MeetingServiceTest {
                 ));
 
         Exception exception = assertThrows(InvalidMeetingException.class, () -> {
-            meetingService.getMeetingSuggestions(sampleCollectionOfCalendar, LocalTime.of(1,2));
+            meetingService.getMeetingSuggestions(sampleCollectionOfCalendar, "10:11");
         });
         String actualMessage = exception.getMessage();
 
@@ -73,7 +73,7 @@ class MeetingServiceTest {
                 ));
 
         Exception exception = assertThrows(InvalidMeetingException.class, () -> {
-            meetingService.getMeetingSuggestions(sampleCollectionOfCalendar, LocalTime.of(1,2));
+            meetingService.getMeetingSuggestions(sampleCollectionOfCalendar, "10:11");
         });
         String actualMessage = exception.getMessage();
 
@@ -91,7 +91,7 @@ class MeetingServiceTest {
                 ));
 
         Exception exception = assertThrows(InvalidMeetingException.class, () -> {
-            meetingService.getMeetingSuggestions(sampleCollectionOfCalendar, LocalTime.of(1,2));
+            meetingService.getMeetingSuggestions(sampleCollectionOfCalendar, "10:11");
         });
         String actualMessage = exception.getMessage();
 
@@ -109,7 +109,7 @@ class MeetingServiceTest {
                 ));
 
         Exception exception = assertThrows(InvalidMeetingException.class, () -> {
-            meetingService.getMeetingSuggestions(sampleCollectionOfCalendar, LocalTime.of(1,2));
+            meetingService.getMeetingSuggestions(sampleCollectionOfCalendar, "10:11");
         });
         String actualMessage = exception.getMessage();
 
@@ -127,7 +127,7 @@ class MeetingServiceTest {
                 ));
 
         Exception exception = assertThrows(InvalidMeetingException.class, () -> {
-            meetingService.getMeetingSuggestions(sampleCollectionOfCalendar, LocalTime.of(1,2));
+            meetingService.getMeetingSuggestions(sampleCollectionOfCalendar, "10:11");
         });
         String actualMessage = exception.getMessage();
 
@@ -143,7 +143,7 @@ class MeetingServiceTest {
                 ));
 
         Exception exception = assertThrows(InvalidMeetingException.class, () -> {
-            meetingService.getMeetingSuggestions(sampleCollectionOfCalendar, LocalTime.of(1,2));
+            meetingService.getMeetingSuggestions(sampleCollectionOfCalendar, "10:11");
         });
         String actualMessage = exception.getMessage();
 
