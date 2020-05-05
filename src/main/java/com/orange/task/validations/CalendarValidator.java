@@ -31,7 +31,7 @@ public class CalendarValidator {
                 .min(LocalTime::compareTo)
                 .orElseThrow(() -> new InvalidCalendarListException("The planned meeting is empty"));
 
-        if (!firstStartTimeFromPlannedMeeting.isAfter(calendar.getWorkingHours().getStart())){
+        if (firstStartTimeFromPlannedMeeting.isBefore(calendar.getWorkingHours().getStart())){
             throw new InvalidCalendarListException("The meetings are before start time working hour");
         }
     }
